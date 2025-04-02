@@ -1,6 +1,9 @@
 package com.example.memorygameappv03.screens
 
 import android.media.MediaPlayer
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -28,6 +31,7 @@ fun GameScreen(
     viewModel: GameViewModel = viewModel()
 ) {
     val context = LocalContext.current
+    val vibrator = context.getSystemService(Vibrator::class.java)
     var timer by remember { mutableIntStateOf(0) }
 
     // Play correct sound
@@ -41,8 +45,14 @@ fun GameScreen(
     // Play wrong sound
     LaunchedEffect(viewModel.playWrongSound) {
         if (viewModel.playWrongSound) {
-            MediaPlayer.create(context, R.raw.wrong)?.start()
-            viewModel.playWrongSound = false
+            vibrator?.let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    it.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    it.vibrate(300)
+                }
+            }
         }
     }
 
