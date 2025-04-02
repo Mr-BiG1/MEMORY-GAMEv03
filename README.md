@@ -63,3 +63,38 @@ This project follows **MVVM (Model-View-ViewModel)** architecture:
 
 ## 📂 Folder Structure
 
+
+com.example.memorygameappv03/ 
+├── manager/ # HighScoreManager 
+├── screens/ # WelcomeScreen, GameScreen, HighScoresScreen, TutorialScreen 
+├── viewmodel/ # GameViewModel (handles game logic) 
+├── res/ 
+│
+├── raw/ # Sound files: correct.mp3, wrong.mp3, cheers.mp3 
+│ 
+└── values/ # Strings and themes
+---
+
+
+> Include the following:
+- Welcome screen with name input
+- Game screen showing timer and grid
+- High Scores screen
+- Tutorial screen (optional)
+
+---
+
+## 🎁 Bonus Features Implemented ✅
+
+- [x] Sound effects
+- [x] How-to-play tutorial screen
+- [x] Clean modern UI with spacing, rounded corners, and themes
+
+---
+
+## 👨‍💻 Author
+
+**Darsan Sabu George**  
+
+---
+
