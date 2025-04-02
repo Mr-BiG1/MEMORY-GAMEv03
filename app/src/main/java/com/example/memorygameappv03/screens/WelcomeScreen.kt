@@ -8,6 +8,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import java.nio.file.WatchEvent
 
 @Composable
 fun WelcomeScreen(navController: NavController) {
@@ -36,7 +37,7 @@ fun WelcomeScreen(navController: NavController) {
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-
+// nav
         Button(
             onClick = {
                 if (playerName.text.isNotBlank()) {
@@ -64,6 +65,15 @@ fun WelcomeScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("How to Play")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        OutlinedButton(
+            onClick = {navController.navigate("about")},
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("About")
         }
     }
 }

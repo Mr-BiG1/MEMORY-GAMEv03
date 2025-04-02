@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
@@ -32,6 +31,11 @@ class MainActivity : ComponentActivity() {
                 }
                 composable("high_scores") {
                     HighScoresScreen(navController)
+                }
+
+                // ✅ Add this block for About screen
+                composable("about") {
+                    AboutScreen(navController)
                 }
             }
         }
