@@ -62,9 +62,9 @@ This project follows **MVVM (Model-View-ViewModel)** architecture:
 ---
 
 ## 📂 Folder Structure
-
-
-com.example.memorygameappv03/ 
+---
+```
+ com.example.memorygameappv03/ 
 ├── manager/ # HighScoreManager 
 ├── screens/ # WelcomeScreen, GameScreen, HighScoresScreen, TutorialScreen 
 ├── viewmodel/ # GameViewModel (handles game logic) 
@@ -73,6 +73,7 @@ com.example.memorygameappv03/
 ├── raw/ # Sound files: correct.mp3, wrong.mp3, cheers.mp3 
 │ 
 └── values/ # Strings and themes
+```
 ---
 
 
