@@ -1,6 +1,6 @@
 package com.example.memorygameappv03.screens
 
-import com.example.memorygameappv03.manager.HighScoreManager
+import android.media.MediaPlayer
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,6 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.memorygameappv03.R
+import com.example.memorygameappv03.manager.HighScoreManager
 import com.example.memorygameappv03.viewmodel.GameViewModel
 import kotlinx.coroutines.delay
 
@@ -25,16 +27,30 @@ fun GameScreen(
     playerName: String,
     viewModel: GameViewModel = viewModel()
 ) {
-    val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    var timer by remember { mutableStateOf(0) }
+    var timer by remember { mutableIntStateOf(0) }
+
+    // Play correct sound
+    LaunchedEffect(viewModel.playCorrectSound) {
+        if (viewModel.playCorrectSound) {
+            MediaPlayer.create(context, R.raw.correct)?.start()
+            viewModel.playCorrectSound = false
+        }
+    }
+
+    // Play wrong sound
+    LaunchedEffect(viewModel.playWrongSound) {
+        if (viewModel.playWrongSound) {
+            MediaPlayer.create(context, R.raw.wrong)?.start()
+            viewModel.playWrongSound = false
+        }
+    }
 
     // Start a new round initially
     LaunchedEffect(Unit) {
         viewModel.startNewRound()
         viewModel.startMemoryPhase()
     }
-
 
     // Timer duration calculation based on round
     fun calculateTimerSeconds(round: Int): Int {
@@ -54,8 +70,7 @@ fun GameScreen(
                 timer--
             }
             if (timer == 0 && viewModel.isInputPhase && !viewModel.isGameOver) {
-                viewModel.isGameOver = true
-                viewModel.isInputPhase = false
+                viewModel.endGame()
             }
         }
     }
@@ -115,8 +130,7 @@ fun GameScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(onClick = {
-                viewModel.round = 1
-                viewModel.score = 0
+                viewModel.resetGame()
                 viewModel.startNewRound()
                 viewModel.startMemoryPhase()
             }) {

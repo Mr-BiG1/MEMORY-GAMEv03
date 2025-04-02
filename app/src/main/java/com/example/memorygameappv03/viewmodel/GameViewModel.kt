@@ -1,3 +1,4 @@
+// File: GameViewModel.kt
 package com.example.memorygameappv03.viewmodel
 
 import androidx.compose.runtime.*
@@ -7,7 +8,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
-
 
 class GameViewModel : ViewModel() {
     var gridSize by mutableStateOf(6)
@@ -19,6 +19,9 @@ class GameViewModel : ViewModel() {
     var isInputPhase by mutableStateOf(false)
     var isGameOver by mutableStateOf(false)
     var timer by mutableStateOf(0)
+
+    var playCorrectSound by mutableStateOf(false)
+    var playWrongSound by mutableStateOf(false)
 
     private var timerJob: Job? = null
 
@@ -64,10 +67,12 @@ class GameViewModel : ViewModel() {
 
     fun checkUserInput() {
         if (selectedTiles.toSet() == correctTiles.toSet()) {
+            triggerCorrectSound()
             score += if (round >= 4) 20 else 10
             round++
             startNewRoundWithDelay()
         } else {
+            triggerWrongSound()
             endGame()
         }
     }
@@ -89,6 +94,7 @@ class GameViewModel : ViewModel() {
                 timer--
             }
             if (timer == 0 && isInputPhase) {
+                triggerWrongSound()
                 endGame()
             }
         }
@@ -112,5 +118,21 @@ class GameViewModel : ViewModel() {
         isGameOver = false
         isMemoryPhase = false
         isInputPhase = false
+    }
+
+    private fun triggerCorrectSound() {
+        playCorrectSound = true
+        viewModelScope.launch {
+            delay(100)
+            playCorrectSound = false
+        }
+    }
+
+    private fun triggerWrongSound() {
+        playWrongSound = true
+        viewModelScope.launch {
+            delay(100)
+            playWrongSound = false
+        }
     }
 }
