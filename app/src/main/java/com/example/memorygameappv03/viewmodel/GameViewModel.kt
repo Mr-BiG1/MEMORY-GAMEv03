@@ -1,6 +1,4 @@
-// File: GameViewModel.kt
 package com.example.memorygameappv03.viewmodel
-
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
