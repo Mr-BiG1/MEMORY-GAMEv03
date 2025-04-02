@@ -1,49 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/welcomeScreen">
-
-    <fragment
-        android:id="@+id/welcomeScreen"
-        android:name="com.example.memorygameappv03.screens.WelcomeScreen"
-        android:label="Welcome">
-        <action
-            android:id="@+id/action_welcome_to_game"
-            app:destination="@id/gameScreen" />
-        <action
-            android:id="@+id/action_welcome_to_tutorial"
-            app:destination="@id/tutorialScreen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/tutorialScreen"
-        android:name="com.example.memorygameappv03.screens.TutorialScreen"
-        android:label="Tutorial">
-        <action
-            android:id="@+id/action_tutorial_to_welcome"
-            app:destination="@id/welcomeScreen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/gameScreen"
-        android:name="com.example.memorygameappv03.screens.GameScreen"
-        android:label="Game">
-        <argument
-            android:name="playerName"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_game_to_highScores"
-            app:destination="@id/highScoresScreen" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/highScoresScreen"
-        android:name="com.example.memorygameappv03.screens.HighScoresScreen"
-        android:label="High Scores">
-        <action
-            android:id="@+id/action_highScores_to_welcome"
-            app:destination="@id/welcomeScreen" />
-    </fragment>
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/nav_graph">
 
 </navigation>
