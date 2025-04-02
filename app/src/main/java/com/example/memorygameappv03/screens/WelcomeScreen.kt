@@ -37,7 +37,7 @@ fun WelcomeScreen(navController: NavController) {
         )
 
         Spacer(modifier = Modifier.height(24.dp))
-// nav
+        // nav
         Button(
             onClick = {
                 if (playerName.text.isNotBlank()) {

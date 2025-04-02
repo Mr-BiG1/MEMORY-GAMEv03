@@ -1,5 +1,4 @@
 package com.example.memorygameappv03
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,7 +32,6 @@ class MainActivity : ComponentActivity() {
                     HighScoresScreen(navController)
                 }
 
-                // ✅ Add this block for About screen
                 composable("about") {
                     AboutScreen(navController)
                 }

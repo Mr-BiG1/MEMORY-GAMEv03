@@ -1,5 +1,4 @@
 package com.example.memorygameappv03.screens
-
 import android.media.MediaPlayer
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -34,7 +33,7 @@ fun GameScreen(
     val vibrator = context.getSystemService(Vibrator::class.java)
     var timer by remember { mutableIntStateOf(0) }
 
-    // Play correct sound
+    // Play sound : correct
     LaunchedEffect(viewModel.playCorrectSound) {
         if (viewModel.playCorrectSound) {
             MediaPlayer.create(context, R.raw.correct)?.start()
@@ -42,7 +41,7 @@ fun GameScreen(
         }
     }
 
-    // Play wrong sound
+    // Play sound: wrong
     LaunchedEffect(viewModel.playWrongSound) {
         if (viewModel.playWrongSound) {
             vibrator?.let {
@@ -56,7 +55,7 @@ fun GameScreen(
         }
     }
 
-    // Start a new round initially
+    // Start a new round
     LaunchedEffect(Unit) {
         viewModel.startNewRound()
         viewModel.startMemoryPhase()
@@ -71,7 +70,7 @@ fun GameScreen(
         }
     }
 
-    // Countdown Timer Effect on each round/input phase
+    // Countdown Timer
     LaunchedEffect(viewModel.round, viewModel.isInputPhase) {
         if (viewModel.isInputPhase && !viewModel.isGameOver) {
             timer = calculateTimerSeconds(viewModel.round)
