@@ -8,6 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
+
 class GameViewModel : ViewModel() {
     var gridSize by mutableStateOf(6)
     var round by mutableStateOf(1)
